@@ -938,8 +938,8 @@ export const MicrosoftSection: React.FC<MicrosoftSectionProps> = ({ isResellerCo
       usagePercentage: 84.3,
       status: 'good',
       subscriptions: [
-        { name: 'Microsoft 365 Business Premium', seats: 150, assigned: 145, active: 128, revenue: 3750.00 },
-        { name: 'Microsoft 365 E3', seats: 100, assigned: 90, active: 70, revenue: 2500.00 }
+        { name: 'Microsoft 365 Business Premium', seats: 150, assigned: 145, active: 128, revenue: 3750.00, termType: 'Annual billed Monthly' },
+        { name: 'Microsoft 365 E3', seats: 100, assigned: 90, active: 70, revenue: 2500.00, termType: 'Triannual Upfront' }
       ],
       azurePlan: {
         active: true,
@@ -964,8 +964,8 @@ export const MicrosoftSection: React.FC<MicrosoftSectionProps> = ({ isResellerCo
       usagePercentage: 75.0,
       status: 'warning',
       subscriptions: [
-        { name: 'Microsoft 365 E5', seats: 200, assigned: 180, active: 155, revenue: 8000.00 },
-        { name: 'Microsoft 365 Business Standard', seats: 250, assigned: 200, active: 130, revenue: 3250.00 }
+        { name: 'Microsoft 365 E5', seats: 200, assigned: 180, active: 155, revenue: 8000.00, termType: 'Annual Upfront' },
+        { name: 'Microsoft 365 Business Standard', seats: 250, assigned: 200, active: 130, revenue: 3250.00, termType: 'Monthly billed Monthly' }
       ],
       azurePlan: {
         active: true,
@@ -990,7 +990,7 @@ export const MicrosoftSection: React.FC<MicrosoftSectionProps> = ({ isResellerCo
       usagePercentage: 56.3,
       status: 'poor',
       subscriptions: [
-        { name: 'Microsoft 365 Business Basic', seats: 125, assigned: 80, active: 45, revenue: 2000.00 }
+        { name: 'Microsoft 365 Business Basic', seats: 125, assigned: 80, active: 45, revenue: 2000.00, termType: 'Triannual Upfront' }
       ],
       azurePlan: {
         active: true,
@@ -2041,6 +2041,14 @@ Best regards,
                             <span className="text-sm font-medium text-gray-800">{sub.name}</span>
                             <span className="text-sm font-semibold text-gray-700">${sub.revenue.toLocaleString('en-US', {minimumFractionDigits: 2})}/mo</span>
                           </div>
+                          <div className="mb-2">
+                            <span className={`inline-block text-xs font-medium px-2 py-1 rounded ${
+                              sub.termType === 'Annual billed Monthly' ? 'bg-blue-100 text-blue-700' :
+                              sub.termType === 'Triannual Upfront' ? 'bg-purple-100 text-purple-700' :
+                              sub.termType === 'Annual Upfront' ? 'bg-indigo-100 text-indigo-700' :
+                              'bg-green-100 text-green-700'
+                            }`}>{sub.termType}</span>
+                          </div>
                           <div className="grid grid-cols-3 gap-2 text-xs text-gray-600">
                             <div>
                               <span className="font-medium">Seats:</span> {sub.seats}
@@ -2569,9 +2577,12 @@ Best regards,
                 <div className="text-sm font-semibold text-gray-700 mb-3">Active Subscriptions</div>
                 <div className="space-y-3">
                   <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-gray-800">Microsoft 365 Business Premium</span>
                       <span className="text-sm font-semibold text-gray-700">$1,200.00/mo</span>
+                    </div>
+                    <div className="mb-3">
+                      <span className="inline-block text-xs font-medium px-2 py-1 bg-blue-100 text-blue-700 rounded">Annual billed Monthly</span>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div className="bg-white rounded p-3">
@@ -2603,9 +2614,12 @@ Best regards,
                   </div>
 
                   <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-gray-800">Office 365 E3</span>
                       <span className="text-sm font-semibold text-gray-700">$600.00/mo</span>
+                    </div>
+                    <div className="mb-3">
+                      <span className="inline-block text-xs font-medium px-2 py-1 bg-purple-100 text-purple-700 rounded">Triannual Upfront</span>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div className="bg-white rounded p-3">
@@ -2641,9 +2655,12 @@ Best regards,
                   </div>
 
                   <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-medium text-gray-800">Power BI Pro</span>
                       <span className="text-sm font-semibold text-gray-700">$150.00/mo</span>
+                    </div>
+                    <div className="mb-3">
+                      <span className="inline-block text-xs font-medium px-2 py-1 bg-green-100 text-green-700 rounded">Monthly billed Monthly</span>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div className="bg-white rounded p-3">
