@@ -2711,7 +2711,7 @@ Best regards,
             )}
           </ExpandableSection>
         </>
-      ) : (
+      ) : !partnerInfo.isReseller ? (
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
           <div className="text-lg font-semibold text-gray-700 mb-4">No tenant linked</div>
           <div className="flex justify-center space-x-4">
@@ -2729,7 +2729,7 @@ Best regards,
             </button>
           </div>
         </div>
-      )}
+      ) : null}
 
       {/* GDAP Options Modal */}
       <GdapOptionsModal
