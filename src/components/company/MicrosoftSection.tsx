@@ -2264,9 +2264,9 @@ Best regards,
             </div>
           </ExpandableSection>
         </div>
-      ) : isTenantLinked ? (
+      ) : !partnerInfo.isReseller && isTenantLinked ? (
         <>
-          {/* Section 1: Customer Tenant Information - For End-Customers */}
+          {/* Section 1: Customer Tenant Information - For End-Customers Only */}
           <ExpandableSection 
             title="Customer Tenant Information" 
             sectionId="microsoft-tenant-info" 
