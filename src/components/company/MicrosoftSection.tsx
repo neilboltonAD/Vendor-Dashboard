@@ -2508,182 +2508,188 @@ Best regards,
             </ExpandableSection>
             )}
 
-            {/* Deployment and Usage Data Subsection - Only for non-resellers */}
+            {/* Partner Centre Insights - For both Resellers and End-Customers */}
             {!partnerInfo.isReseller && (
             <ExpandableSection 
-              title="Deployment and Usage Data" 
-              open={deploymentUsageSectionOpen}
-              onToggle={setDeploymentUsageSectionOpen}
+              title="Partner Centre Insights" 
+              sectionId="microsoft-partner-insights-customer"
+              defaultOpen={true}
               className="mb-3"
-              helpContent="Deployment and Usage Data provides comprehensive analytics on how your Microsoft 365 licenses are being utilized. This includes metrics on license entitlements, active user engagement, deployment rates, and overall usage patterns. These insights help optimize your Microsoft 365 investment and identify opportunities for improvement."
+              helpContent="Comprehensive analytics and metrics from Microsoft Partner Center about your Microsoft 365 usage, deployment, subscriptions, and spending. Use these insights to understand user engagement, identify optimization opportunities, and track license utilization."
             >
-              {/* Entitlements Subsection */}
-              <ExpandableSection 
-                title={
-                  <div className="flex items-center justify-between w-full">
-                    <span>Entitlements</span>
-                    <span className={`text-xs font-bold uppercase rounded px-2 py-1 ${getStatusColor(deploymentData.entitlements.status)}`}>
-                      {deploymentData.entitlements.percentage}%
-                    </span>
-                  </div>
-                }
-                open={entitlementSectionOpen}
-                onToggle={setEntitlementSectionOpen}
-                className="mb-3"
-              >
-                <div className="mb-4">
+              {/* Overview Metrics */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-700">License Utilization</div>
-                    <div className="text-sm text-gray-500">{deploymentData.entitlements.active} of {deploymentData.entitlements.total} licenses active</div>
+                    <span className="text-xs font-medium text-blue-700 uppercase">Total Seats</span>
+                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
-                    <div 
-                      className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
-                      style={{ width: `${deploymentData.entitlements.percentage}%` }}
-                    ></div>
-                  </div>
-                  <div className="text-xs text-gray-600 mb-3">
-                    <strong>Definition:</strong> A license that the user is entitled to use (not suspended for fraud or non-payment, not upgraded to a different license, not canceled by the user, or other issues).
-                  </div>
-                  <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                    <div className="text-sm font-medium text-blue-800 mb-2">💡 Recommendations to improve:</div>
-                    <ul className="text-xs text-blue-700 space-y-1">
-                      {getRecommendations('entitlements').map((rec, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="mr-2">•</span>
-                          {rec}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <div className="text-2xl font-bold text-blue-800">150</div>
+                  <div className="text-xs text-blue-600 mt-1">Microsoft 365 licenses</div>
                 </div>
-              </ExpandableSection>
+                
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-green-700 uppercase">Assigned Seats</span>
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="text-2xl font-bold text-green-800">142</div>
+                  <div className="text-xs text-green-600 mt-1">94.7% deployment</div>
+                </div>
+                
+                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-purple-700 uppercase">Active Users</span>
+                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </div>
+                  <div className="text-2xl font-bold text-purple-800">118</div>
+                  <div className="text-xs text-purple-600 mt-1">83.1% usage (28 days)</div>
+                </div>
+                
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-amber-700 uppercase">Monthly Cost</span>
+                    <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="text-2xl font-bold text-amber-800">$1,950.00</div>
+                  <div className="text-xs text-amber-600 mt-1">Total subscription cost</div>
+                </div>
+              </div>
 
-              {/* Active Users Subsection */}
-              <ExpandableSection 
-                title={
-                  <div className="flex items-center justify-between w-full">
-                    <span>Active Users</span>
-                    <span className={`text-xs font-bold uppercase rounded px-2 py-1 ${getStatusColor(deploymentData.active.status)}`}>
-                      {deploymentData.active.percentage}%
-                    </span>
+              {/* Subscription Details */}
+              <div className="mb-4">
+                <div className="text-sm font-semibold text-gray-700 mb-3">Active Subscriptions</div>
+                <div className="space-y-3">
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-gray-800">Microsoft 365 Business Premium</span>
+                      <span className="text-sm font-semibold text-gray-700">$1,200.00/mo</span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Deployment</div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-lg font-bold text-gray-800">96%</span>
+                          <span className="text-xs text-gray-600">96/100</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="h-2 rounded-full bg-green-600" style={{ width: '96%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Usage (28 days)</div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-lg font-bold text-gray-800">85%</span>
+                          <span className="text-xs text-gray-600">82/96</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="h-2 rounded-full bg-green-600" style={{ width: '85%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Status</div>
+                        <div className="text-sm font-semibold text-green-700">Active</div>
+                        <div className="text-xs text-gray-500 mt-1">Renews: Dec 15, 2025</div>
+                      </div>
+                    </div>
                   </div>
-                }
-                open={activeSectionOpen}
-                onToggle={setActiveSectionOpen}
-                className="mb-3"
-              >
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-700">User Activity (Last 28 Days)</div>
-                    <div className="text-sm text-gray-500">{deploymentData.active.active} of {deploymentData.active.total} users active</div>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
-                    <div 
-                      className="bg-green-600 h-2 rounded-full transition-all duration-300" 
-                      style={{ width: `${deploymentData.active.percentage}%` }}
-                    ></div>
-                  </div>
-                  <div className="text-xs text-gray-600 mb-3">
-                    <strong>Definition:</strong> If the subscribed user has used the entitlement for a task in the last 28 calendar days.
-                  </div>
-                  <div className="bg-yellow-50 border border-yellow-200 rounded p-3">
-                    <div className="text-sm font-medium text-yellow-800 mb-2">💡 Recommendations to improve:</div>
-                    <ul className="text-xs text-yellow-700 space-y-1">
-                      {getRecommendations('active').map((rec, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="mr-2">•</span>
-                          {rec}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </ExpandableSection>
 
-              {/* Deployment Subsection */}
-              <ExpandableSection 
-                title={
-                  <div className="flex items-center justify-between w-full">
-                    <span>Deployment</span>
-                    <span className={`text-xs font-bold uppercase rounded px-2 py-1 ${getStatusColor(deploymentData.deployment.status)}`}>
-                      {deploymentData.deployment.percentage}%
-                    </span>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-gray-800">Office 365 E3</span>
+                      <span className="text-sm font-semibold text-gray-700">$600.00/mo</span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Deployment</div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-lg font-bold text-gray-800">92%</span>
+                          <span className="text-xs text-gray-600">46/50</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="h-2 rounded-full bg-green-600" style={{ width: '92%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Usage (28 days)</div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-lg font-bold text-gray-800">78%</span>
+                          <span className="text-xs text-gray-600">36/46</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="h-2 rounded-full bg-yellow-600" style={{ width: '78%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Status</div>
+                        <div className="text-sm font-semibold text-green-700">Active</div>
+                        <div className="text-xs text-gray-500 mt-1">Renews: Jan 8, 2026</div>
+                      </div>
+                    </div>
+                    <div className="mt-3 bg-yellow-50 border border-yellow-200 rounded p-3">
+                      <div className="text-xs font-medium text-yellow-800 mb-1">💡 Recommendation</div>
+                      <div className="text-xs text-yellow-700">Usage below 80%. Consider training programs to increase user engagement and maximize ROI.</div>
+                    </div>
                   </div>
-                }
-                open={deploymentSectionOpen}
-                onToggle={setDeploymentSectionOpen}
-                className="mb-3"
-              >
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-700">License Assignment</div>
-                    <div className="text-sm text-gray-500">{deploymentData.deployment.assigned} of {deploymentData.deployment.sold} licenses assigned</div>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
-                    <div 
-                      className="bg-purple-600 h-2 rounded-full transition-all duration-300" 
-                      style={{ width: `${deploymentData.deployment.percentage}%` }}
-                    ></div>
-                  </div>
-                  <div className="text-xs text-gray-600 mb-3">
-                    <strong>Definition:</strong> Deployment % = assigned licenses / sold licenses
-                  </div>
-                  <div className="bg-green-50 border border-green-200 rounded p-3">
-                    <div className="text-sm font-medium text-green-800 mb-2">💡 Recommendations to improve:</div>
-                    <ul className="text-xs text-green-700 space-y-1">
-                      {getRecommendations('deployment').map((rec, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="mr-2">•</span>
-                          {rec}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </ExpandableSection>
 
-              {/* Usage Subsection */}
-              <ExpandableSection 
-                title={
-                  <div className="flex items-center justify-between w-full">
-                    <span>Usage</span>
-                    <span className={`text-xs font-bold uppercase rounded px-2 py-1 ${getStatusColor(deploymentData.usage.status)}`}>
-                      {deploymentData.usage.percentage}%
-                    </span>
-                  </div>
-                }
-                open={usageSectionOpen}
-                onToggle={setUsageSectionOpen}
-                className="mb-3"
-              >
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-sm font-medium text-gray-700">User Engagement</div>
-                    <div className="text-sm text-gray-500">{deploymentData.usage.activeUsers} of {deploymentData.usage.totalUsers} users engaged</div>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
-                    <div 
-                      className="bg-orange-600 h-2 rounded-full transition-all duration-300" 
-                      style={{ width: `${deploymentData.usage.percentage}%` }}
-                    ></div>
-                  </div>
-                  <div className="text-xs text-gray-600 mb-3">
-                    <strong>Definition:</strong> Usage % = active users / total users. Note: Usage % can sometimes exceed 100% due to license transfers, trial subscriptions, or multiple subscriptions for the same SKU.
-                  </div>
-                  <div className="bg-yellow-50 border border-yellow-200 rounded p-3">
-                    <div className="text-sm font-medium text-yellow-800 mb-2">💡 Recommendations to improve:</div>
-                    <ul className="text-xs text-yellow-700 space-y-1">
-                      {getRecommendations('usage').map((rec, index) => (
-                        <li key={index} className="flex items-start">
-                          <span className="mr-2">•</span>
-                          {rec}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-gray-800">Power BI Pro</span>
+                      <span className="text-sm font-semibold text-gray-700">$150.00/mo</span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Deployment</div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-lg font-bold text-gray-800">100%</span>
+                          <span className="text-xs text-gray-600">15/15</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="h-2 rounded-full bg-green-600" style={{ width: '100%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Usage (28 days)</div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-lg font-bold text-gray-800">100%</span>
+                          <span className="text-xs text-gray-600">15/15</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="h-2 rounded-full bg-green-600" style={{ width: '100%' }}></div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded p-3">
+                        <div className="text-xs text-gray-600 mb-1">Status</div>
+                        <div className="text-sm font-semibold text-green-700">Active</div>
+                        <div className="text-xs text-gray-500 mt-1">Renews: Nov 20, 2025</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </ExpandableSection>
+              </div>
+
+              {/* Data Attribution */}
+              <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-600">
+                <div className="flex items-start">
+                  <svg className="w-4 h-4 text-gray-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <strong>Data Source:</strong> Microsoft Partner Center Insights API | <strong>Updated:</strong> Daily | <strong>Usage Period:</strong> Last 28 days | 
+                    <a href="https://learn.microsoft.com/en-us/partner-center/develop/partner-center-analytics-resources" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline ml-1">
+                      Learn more about Partner Center Insights
+                    </a>
+                  </div>
+                </div>
+              </div>
             </ExpandableSection>
             )}
           </ExpandableSection>
